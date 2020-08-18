@@ -1,0 +1,91 @@
+PUT /csfd/_mapping/movie
+{
+    "movie": {
+      "properties": {
+        "content": {
+          "properties": {
+            "plot": {
+              "type": "text"
+            },
+            "source": {
+              "type": "text"
+            }
+          }
+        },
+        "country": {
+          "type": "keyword",
+          "ignore_above": 256
+        },
+        "creators": {
+          "properties": {
+            "Hrají:": {
+              "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+            }
+            },
+            "Hudba:": {
+              "type": "text"
+            },
+            "Kamera:": {
+              "type": "text"
+            },
+            "Kostýmy:": {
+              "type": "text"
+            },
+            "Masky:": {
+              "type": "text"
+            },
+            "Producenti:": {
+              "type": "text"
+            },
+            "Předloha:": {
+              "type": "text"
+            },
+            "Režie:": {
+              "type": "text"
+            },
+            "Scénografie:": {
+              "type": "text"
+            },
+            "Scénář:": {
+              "type": "text"
+            },
+            "Střih:": {
+              "type": "text"
+            },
+            "Tvůrci:": {
+              "type": "text"
+            },
+            "Zvuk:": {
+              "type": "text"
+            }
+          }
+        },
+        "genre": {
+          "type": "keyword",
+          "ignore_above": 256
+        },
+        "lenght": {
+          "type": "long"
+        },
+        "rating": {
+          "type": "long"
+        },
+        "title": {
+          "type": "text",
+          "analyzer": "autocomplete"
+        },
+        "titles": {
+          "type": "text",
+          "analyzer": "search_analyzer"
+        },
+        "year": {
+          "type": "long"
+        }
+      }
+    }
+}

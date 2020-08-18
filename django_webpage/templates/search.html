@@ -1,0 +1,206 @@
+{%load static from staticfiles %}
+{% load my_tags %}
+<head>
+    <meta charset="utf-8">
+
+    <link rel='stylesheet' href="{% static 'css/theme_2.css' %}">
+    <link rel='stylesheet' href="{% static 'css/font-awesome.min.css' %}">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+<style>
+
+    .checkbox label:after,
+.radio label:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.checkbox .cr,
+.radio .cr {
+    position: relative;
+    display: inline-block;
+    border: 1px solid #a9a9a9;
+    border-radius: .25em;
+    width: 1.3em;
+    height: 1.3em;
+    float: left;
+    margin-right: .5em;
+}
+
+.radio .cr {
+    border-radius: 50%;
+}
+
+.checkbox .cr .cr-icon,
+.radio .cr .cr-icon {
+    position: absolute;
+    font-size: .8em;
+    line-height: 0;
+    top: 50%;
+    left: 20%;
+}
+
+.radio .cr .cr-icon {
+    margin-left: 0.04em;
+}
+
+.checkbox label input[type="checkbox"],
+.radio label input[type="radio"] {
+    display: none;
+}
+
+.checkbox label input[type="checkbox"] + .cr > .cr-icon,
+.radio label input[type="radio"] + .cr > .cr-icon {
+    transform: scale(3) rotateZ(-20deg);
+    opacity: 0;
+    transition: all .3s ease-in;
+}
+
+.checkbox label input[type="checkbox"]:checked + .cr > .cr-icon,
+.radio label input[type="radio"]:checked + .cr > .cr-icon {
+    transform: scale(1) rotateZ(0deg);
+    opacity: 1;
+}
+
+.checkbox label input[type="checkbox"]:disabled + .cr,
+.radio label input[type="radio"]:disabled + .cr {
+    opacity: .5;
+}
+
+.list-group-item {
+    padding: 3px 10px
+}
+
+.checked-list-box:checked{
+    display: none;
+}
+
+</style>
+
+{% block body %}
+  <div class="p-5" style="">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+
+
+            <div class="col-md-2" style="">
+                <img class="img-fluid d-block p-0 my-1 mx-auto" src="{% static 'images/icon-white-red.svg' %}" alt="Small logo" width="100"/>
+            </div>
+            <div class="col-md-8" style="">
+                <input type="text" class="form-control text-left form-control-lg w-100 px-2 my-4" placeholder="Názov..." id="search_box" required="required">
+            </div>
+            <div class="my-4"><a class="btn btn-primary btn-lg" href="#" id="button_3">Vyhľadať </a></div>
+          </div>
+            <div class="row" >
+
+            <div class="col-md-2" ></div>
+            <div class="col-md-4" style="display: block" id="empty"></div>
+            <div class="col-md-4" style="display: none" id="movies_genre">
+                <div class="col-xs-3">
+                <div class="well" style="max-height: 150px;overflow: auto;">
+                    <ul class="list-group checked-list-box ">
+                      <li class="list-group-item" style="gl: none">Cras justo odio  </li>
+                      <li class="list-group-item" >Dapibus ac facilisis in  </li>
+                      <li class="list-group-item">Morbi leo risus  </li>
+                      <li class="list-group-item">Porta ac consectetur ac  </li>
+                      <li class="list-group-item">Vestibulum at eros  </li>
+                      <li class="list-group-item">Cras justo odio  </li>
+                      <li class="list-group-item">Dapibus ac facilisis in  </li>
+                      <li class="list-group-item">Morbi leo risus  </li>
+                      <li class="list-group-item">Porta ac consectetur ac  </li>
+                      <li class="list-group-item">Vestibulum at eros  </li>
+                    </ul>
+                 </div>
+            </div>
+
+            </div>
+            <div class="col-md-2" style="display: none" id="from">
+              <form class="form-inline" >
+                <div class="input-group" > <input type="email" class="form-control" placeholder="Od" id="gte">
+                </div>
+              </form>
+            </div>
+            <div class="col-md-2" style="display: none" id="to">
+              <form class="form-inline" >
+                <div class="input-group"> <input type="email" class="form-control" placeholder="Do" style="" id="lte">
+                </div>
+              </form>
+
+
+            </div>
+            <div class="col-md-2  " style="">  <div class="form-group">
+          <select class="form-control" id="filter">
+            <option>Filmy</option>
+            <option>Herci</option>
+            <option>Hodnotenie</option>
+{#            <option>Žáner</option>#}
+          </select>
+        </div></div>
+            <div class="col-md-1.5" style="">
+          <div class="checkbox">
+            <label style="font-size: 1.5em">
+                <input type="checkbox" value="" id="fuzzy" disabled>
+                <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                Fuzzy
+            </label>
+        </div>
+            </div>
+                            <div class="col-md-2" style="">
+          <div class="checkbox">
+            <label style="font-size: 1.5em">
+                <input type="checkbox" value="" id="avg" >
+                <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                Priemer
+            </label>
+        </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="list-group">
+              {% for i in movies %}
+                  {% if forloop.counter0|modulo %}
+                      <a href="{{ i.url}}" class="list-group-item list-group-item-action flex-column align-items-start">
+                  {% else %}
+                      <a href="{{ i.url}}" class="list-group-item list-group-item-action flex-column align-items-start active">
+                  {% endif %}
+                         <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ i.title }}</h5> <small>{{ i.rating }} %</small>
+              </div>
+              <p class="mb-1">{{ i.plot }}</p> <small>{{ i.reziser }}</small>
+              </a>
+                {% endfor %}
+            <ul class="pagination px-2">
+            <li class="page-item"> <a class="page-link" href="#"> <span>«</span> <span class="sr-only">Previous</span> </a> </li>
+                {% for i in pages %}
+                <li class="page-item"> <a class="page-link" href={{ i }}>{{ forloop.counter }}</a> </li>
+                {% endfor %}
+            <li class="page-item"> <a class="page-link" href="#"> <span>»</span> <span class="sr-only">Next</span> </a> </li>
+          </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block admin_change_form_document_ready  %}
+<script type="text/javascript" src="{% static 'app/generate_li.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'app/search_add.js' %}"></script>
+{% endblock %}

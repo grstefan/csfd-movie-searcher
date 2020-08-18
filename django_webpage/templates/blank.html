@@ -1,0 +1,43 @@
+{%load static from staticfiles %}
+
+<head>
+    <meta charset="utf-8">
+    <link rel='stylesheet' href="{% static 'css/theme.css' %}">
+    <link rel='stylesheet' href="{% static 'css/font-awesome.min.css' %}">
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+</head>
+
+{% block body %}
+  <div class="py-5" id="all">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12"></div>
+      </div>
+    </div>
+  </div>
+  <div class="gegergre">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12" href="https://www.csfd.cz">
+            <img class="img-fluid d-block p-0 my-1 mx-auto" href="www.csfd.cz" src="{% static 'images/unnamed-15.png' %}" alt="Logo" style="" />
+            <input type="text" class="form-control w-75 text-left mx-auto form-control-lg" placeholder="Názov filmu..." id="search_box">
+            <div class="col-md-8 offset-md-2" id="liiist" style="position: absolute; top: 100%; text-align: center; z-index: 100; display: block;" >
+                <ul class="list-group"></ul>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 p-2 text-right" style=""><a href="#" class="btn btn-outline-primary btn-lg" id="button_1">Pokročilé vyhľadávanie</a></div>
+        <div class="col-md-6 p-2"><a class="btn btn-primary btn-lg" href="#" id="button_2">Vyhľadať </a></div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block admin_change_form_document_ready  %}
+<script type="text/javascript" src="{% static 'app/generate_li.js' %}"></script>
+<script type="text/javascript" src="{% static 'app/autocomplete.js' %}"></script>
+
+{% endblock %}
+
+

@@ -1,0 +1,10 @@
+beautifulsoup4==4.6.3
+certifi==2020.6.20
+chardet==3.0.4
+Django==2.1.2
+elasticsearch==6.3.1
+idna==2.7
+numpy==1.15.2
+pytz==2020.1
+requests==2.19.1
+urllib3==1.23
