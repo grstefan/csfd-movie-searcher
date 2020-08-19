@@ -1,1 +1,4 @@
 .idea/*
+django_webpage/django_webpage/__pycache__/*
+django_webpage/web_interface/__pycache__/*
+django_webpage/web_interface/templatetags/__pycache__/*
